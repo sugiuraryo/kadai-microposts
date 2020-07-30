@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_asction :require_user_igged_in, only: [:index, :show]
+  
   def index
     @users = User.order(id: :desc).page(params[:page]).per(25)
   end
