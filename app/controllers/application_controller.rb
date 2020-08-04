@@ -1,12 +1,16 @@
 class ApplicationController < ActionController::Base
     
-    include SessionHelper
-    
-    private
-    
-    def require_user_igged_in
-        unless logged_in?
-            redirect_to login_url
-        end
-    end    
+    include SessionsHelper
+
+ private
+
+  def require_user_logged_in
+    unless logged_in?
+      redirect_to login_url
+    end
+  end
+
+  def counts(user)
+    @count_microposts = user.microposts.count
+  end
 end
